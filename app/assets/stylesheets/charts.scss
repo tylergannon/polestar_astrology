@@ -1,0 +1,204 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+$border-width: 0.5px;
+$cell-padding-left: 0px;
+$border: $border-width solid black;
+$border-radius-size: '05';
+
+@mixin one-corner($y-name, $x-name, $space) {
+  $radius: map-get($spacers, $space);
+
+  border-#{$y-name}-#{$x-name}-radius: $radius;
+}
+
+@mixin palace_location($animal, $location, $cell-width) {
+  &.#{$animal} {
+    $x: nth($location, 1);
+    $y: nth($location, 2);
+    @if $x == 0 {
+      border-left: $border;
+    }
+    @if $y == 0 {
+      border-top: $border;
+    }
+    left: $x * $cell-width;
+    top:  $y * $cell-width;
+  }
+}
+
+// $base-font-sizes: (
+//   xs: 0.4rem,
+//   sm: 0.5rem,
+//   md: 0.6rem,
+//   lg: (625/700)rem,
+//   xl: 1rem
+// ) !default;
+
+$rank-multipliers: (
+  1: 1.5,
+  2: 1.25,
+  3: 1.2,
+  4: 1.1,
+  5: 0.875,
+  6: 0.825,
+  7: 0.8
+);
+
+$chart-sizes: (
+  xs: 375px,
+  sm: 500px,
+  md: 500px,
+  lg: 625px,
+  xl: 700px
+) !default;
+
+@function base-font-size($screen-size) {
+  @return (map-get($chart-sizes, $screen-size) / map-get($chart-sizes, xl)) * 1rem;
+}
+
+$palaces: (
+  snake: (0, 0),
+  horse: (1, 0),
+  goat: (2, 0),
+  monkey: (3, 0),
+  dragon: (0, 1),
+  rooster: (3, 1),
+  rabbit: (0, 2),
+  dog: (3, 2),
+  tiger: (0, 3),
+  ox: (1, 3),
+  rat: (2, 3),
+  pig: (3, 3)
+);
+
+.chart_display {
+  position: relative;
+  .chart_title {
+    position: absolute;
+    border-right: $border;
+    border-bottom: $border;
+    .name {
+      font-family: 'Buda', cursive;
+    }
+  }
+  @each $name, $width in $chart-sizes {
+    @include media-breakpoint-up($name) {
+      $dimension-base: $width;
+      $cell-width: ($width)/4;
+      $cell-height: $cell-width;
+      width: $width;
+      height: $width;
+      .chart_title {
+        top: $cell-width;
+        left: $cell-width;
+        width: $cell-width * 2;
+        height: $cell-width * 2;
+        font-size: base-font-size($name);
+        font-family: 'Maven Pro', sans-serif;
+        .name {
+          font-size: 2.6 * base-font-size($name);
+        }
+        .pillars {
+          position: absolute;
+          top: $cell-width * 1.1;
+          font-size: 0.82 * base-font-size($name);
+          .pillar_name {
+            font-size: 1.05 * base-font-size($name);
+          }
+        }
+      }
+      .palace_name {
+        height: $cell-width * 0.18;
+      }
+      .stars {
+        height: $cell-width * 0.68;
+        .major_stars {
+          min-height: $cell-width * 0.4;
+        }
+      }
+      .palace_location {
+        height: $cell-width * 0.14;
+        font-size: base-font-size($name);
+      }
+    }
+  }
+
+  .palaces {
+    .palace {
+      border-bottom: $border;
+      border-right: $border;
+      position: absolute;
+      font-family: 'Domine', serif;
+
+      .major_stars .star {
+        display: block;
+      }
+      .minor_stars .star {
+        display: flex;
+        padding-left: 8px;
+        &:first-child {
+          padding-left: 0;
+        }
+      }
+      // .name {
+      //   border-bottom: $border;
+      // }
+      @each $name, $width in $chart-sizes {
+        &.snake {
+          @include one-corner(top, left, $border-radius-size)
+        }
+        &.monkey {
+          @include one-corner(top, right, $border-radius-size)
+        }
+        &.tiger {
+          @include one-corner(bottom, left, $border-radius-size)
+        }
+        &.pig {
+          @include one-corner(bottom, right, $border-radius-size)
+        }
+
+        @include media-breakpoint-up($name) {
+          h5 {
+            font-size: base-font-size($name);
+          }
+          @each $rank, $multiplier in $rank-multipliers {
+            .rank#{$rank} {
+              font-size: $multiplier * base-font-size($name);
+              font-weight: 800 - $rank * 100;
+              color: rgba(0, 0, 0, (11-$rank)/10);
+              &.borrowed_star {
+                font-size: $multiplier * 0.85 * base-font-size($name);
+                font-weight: 500 - $rank * 100;
+                color: rgba(0, 0, 0, 0.5*(7-$rank)/10);
+                font-style: italic;
+              }
+            }
+          }
+          $dimension-base: $width;
+          $cell-width: ($width)/4;
+          $cell-height: $cell-width;
+          width: $cell-width;
+          height: $cell-height;
+          @each $animal, $location in $palaces {
+            @include palace-location($animal, $location, $cell-width)
+          }
+        }
+      }
+    }
+  }
+
+
+
+
+  //  Chart Layout
+
+  // .chart {
+  //   .title_info {
+  //     .min-size(2 * (@cell-width + @border-width + @cell-padding-left), 2 * (@cell-height + @border-width + @cell-padding-left) );
+  //     .palace_location(1, 1);
+  //   }
+  //
+  // }
+}

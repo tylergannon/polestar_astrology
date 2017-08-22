@@ -1,0 +1,12 @@
+= vertical_form_for @star_relationship, url: star_palace_relationships_path(@star, @palace) do |f|
+  - for star_relationship_star in @star_relationship.star_relationship_stars
+    select name='star_relationship[star_relationship_stars][][star_id]'
+      option
+      - Star.all.each do |star|
+        option value=star.id selected=(star==star_relationship_star.star) =star.english
+    input type="checkbox" name='star_relationship[star_relationship_stars][][required]' checked=(star_relationship_star.required)
+  = f.fields_for :comments, Comment.new do |ff|
+    = ff.text_area_input :comments
+    = ff.text_input :citation
+
+  = f.submit 'Save'

@@ -1,0 +1,13 @@
+$spacer:   1rem;
+$spacer-x: $spacer;
+$spacer-y: $spacer;
+$zero: 0rem;
+$spacers: (
+ 0: 0rem,
+ 1: $spacer-x,
+ 2: ($spacer-x * 1.5),
+ 3: ($spacer-x * 3),
+ '025': ($spacer-x * 0.25),
+ '05': ($spacer-x * 0.5),
+ '075': ($spacer-x * 0.75)
+);

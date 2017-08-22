@@ -1,0 +1,10 @@
+h2.text-xs-center Forgot Your Password?
+
+.row: *col_sizes(lg: 4, md: 6, sm: 8, xs: 10, offset: {lg: 4, md: 3, sm: 2, xs: 1})
+  = vertical_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+    = f.text_input :email, class: 'border-radius-2', label: false
+
+  a.btn.btn-social.btn-google.w-100.border-radius-2.m-t-025[
+    href=member_google_oauth2_omniauth_authorize_path]
+    i class="fa fa-envelope-o"
+    .w-100.text-xs-center Send Password Reset Instructions

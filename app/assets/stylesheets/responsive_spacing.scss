@@ -1,0 +1,82 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+@import "spacers";
+
+// @mixin responsive-radius($screen, $size) {
+//   $lengths: map-get($spacers, $size);
+//   $length: map-get(map-get($spacers, $size), x);
+//
+// }
+
+@each $size, $length in $spacers {
+  .border-radius-#{$size} {
+    border-radius: $length !important;
+  }
+
+  .border-top-radius-#{$size} {
+    border-top-left-radius: $length !important;
+    border-top-right-radius: $length !important;
+  }
+
+  .border-bottom-radius-#{$size} {
+    border-bottom-left-radius: $length !important;
+    border-bottom-right-radius: $length !important;
+  }
+
+  .border-left-radius-#{$size} {
+    border-top-left-radius: $length !important;
+    border-bottom-left-radius: $length !important;
+  }
+
+  .border-right-radius-#{$size} {
+    border-top-right-radius: $length !important;
+    border-bottom-right-radius: $length !important;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  @each $prop, $abbrev in (margin: m, padding: p) {
+    @each $size, $length in $spacers {
+
+      .#{$abbrev}-a-#{$size}-sm-up { #{$prop}:        $length $length !important; } // a = All sides
+      .#{$abbrev}-t-#{$size}-sm-up { #{$prop}-top:    $length !important; }
+      .#{$abbrev}-r-#{$size}-sm-up { #{$prop}-right:  $length !important; }
+      .#{$abbrev}-b-#{$size}-sm-up { #{$prop}-bottom: $length !important; }
+      .#{$abbrev}-l-#{$size}-sm-up { #{$prop}-left:   $length !important; }
+
+      // Axes
+      .#{$abbrev}-x-#{$size}-sm-up {
+        #{$prop}-right:  $length !important;
+        #{$prop}-left:   $length !important;
+      }
+      .#{$abbrev}-y-#{$size}-sm-up {
+        #{$prop}-top:    $length !important;
+        #{$prop}-bottom: $length !important;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  @each $prop, $abbrev in (margin: m, padding: p) {
+    @each $size, $length in $spacers {
+
+      .#{$abbrev}-a-#{$size}-xs { #{$prop}:        $length $length !important; } // a = All sides
+      .#{$abbrev}-t-#{$size}-xs { #{$prop}-top:    $length !important; }
+      .#{$abbrev}-r-#{$size}-xs { #{$prop}-right:  $length !important; }
+      .#{$abbrev}-b-#{$size}-xs { #{$prop}-bottom: $length !important; }
+      .#{$abbrev}-l-#{$size}-xs { #{$prop}-left:   $length !important; }
+
+      // Axes
+      .#{$abbrev}-x-#{$size}-xs {
+        #{$prop}-right:  $length !important;
+        #{$prop}-left:   $length !important;
+      }
+      .#{$abbrev}-y-#{$size}-xs {
+        #{$prop}-top:    $length !important;
+        #{$prop}-bottom: $length !important;
+      }
+    }
+  }
+}

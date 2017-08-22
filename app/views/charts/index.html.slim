@@ -1,0 +1,46 @@
+- cache "view-#{@cache_key}" do
+  h4.text-xs-center My Charts
+
+  .row: *col_sizes(lg: 4, md: 6, sm: 8, xs: 12, offset: {lg: 4, md: 3, sm: 2, xs: 0})
+    = form_tag charts_path, method: 'get' do
+      .form-group
+        .input-group.w-100.card-like.border-radius-2
+          / .input-group-addon.border-left-radius-2 $
+          input.border-left-radius-2#chart-search.form-control name="search" placeholder="Search: 'charlie' or 'wood monkey'" value=params[:search] autocomplete="off" type="text" /
+          .input-group-addon.border-right-radius-2
+            button type="submit" class='form-control btn btn-sm'
+              i.fa.fa-search
+
+  .row: *col_sizes(lg: 8, sm: 10, xs: 12, offset: {lg: 2, sm: 1, xs: 0})
+    .card-like.p-x-1.border-radius-1
+      .table-list
+        .row.p-y-1.border-top-radius-1
+          .col-sm-4.col-xs-8 Name
+          .col-sm-3.hidden-xs-down Year
+          .col-sm-3.hidden-xs-down Hour
+          .col-sm-2.col-xs-4 Buttons
+        .table-body
+          - @charts.each do |chart|
+            .row.p-y-1.linkable[
+              data-href=chart_path(chart)
+              data-search_text=chart.search_text
+              ]
+              .col-md-4.col-xs-8: h5.m-b-0= chart.person_name
+              .col-sm-1.hidden-sm-down= chart.dob.strftime('%Y')
+              .col-xs-2.hidden-sm-down
+                = chart.year.stem.element.titleize
+                | &nbsp;
+                = chart.year.branch.animal.titleize
+              .col-xs-2.hidden-sm-down
+                = chart.hour.stem.element.titleize
+                | &nbsp;
+                = chart.hour.branch.animal.titleize
+              .col-md-3.col-xs-4
+                = link_to chart_path(chart), method: :delete, :'data-turbolinks' => "false", :'data-confirm' => 'Really?', class: 'pull-xs-right' do
+                  i.fa.fa-trash-o.m-l-1
+                = link_to chart_path(chart, format: :pdf), class: 'pull-xs-right' do
+                  i.fa.fa-file-pdf-o.m-l-1
+                = link_to [:edit, chart], class: 'pull-xs-right' do
+                  i.fa.fa-pencil.m-l-1
+                = link_to chart, class: 'pull-xs-right' do
+                  i.fa.fa-folder-open-o.m-l-1

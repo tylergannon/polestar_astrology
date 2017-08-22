@@ -1,0 +1,27 @@
+.row: *col_sizes(lg: 6, md: 8, sm: 10, xs: 12, offset: {lg: 3, md: 2, sm: 1, xs: 0})
+  = vertical_form_for(@chart) do |f|
+    = f.text_input :first_name, class: 'border-radius-2', label: false
+    = f.text_input :last_name, class: 'border-radius-2', label: false
+    .form-group: .input-group
+      span.input-group-addon.border-left-radius-2 Yin/Yang
+      = f.collection_select :yin_yang, [['Yin (Female)', 'yin'], ['Yang (Male)', 'yang']], :last, :first, {}, class: 'form-control'
+      span.input-group-addon.border-right-radius-2
+        i.fa.fa-female
+        | /
+        i.fa.fa-male
+
+    .input-group
+      = f.text_field :dob_year, placeholder: 'Year', class: 'form-control border-left-radius-2', autocomplete: 'off'
+      = f.collection_select :dob_month, months, :last, :first, class: 'form-control', default: nil, include_blank: true
+      /= f.date_select :dob_month, discard_year: true, discard_day: true, class: 'form-control', default: nil, include_blank: true, placeholder: 'Month'
+      = f.text_field :dob_day, placeholder: 'Day', class: 'form-control'
+      = f.time_field :dob_time, class: 'form-control border-right-radius-2'
+    .input-group.m-t-1.w-100
+      span.input-group-addon.border-left-radius-2 Time Zone
+      = f.time_zone_select :time_zone, nil, include_blank: true
+      span.input-group-addon.border-right-radius-2
+        i.fa.fa-globe
+
+    button type="submit" class='w-100 btn border-radius-2 m-t-1 btn-social btn-primary'
+      i class="fa fa-floppy-o"
+      .w-100.text-xs-center Save

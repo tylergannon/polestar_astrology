@@ -1,0 +1,6 @@
+.p-a-1-sm-up
+  h2 Stars
+
+  .list-group
+    - for star in @stars
+      a href=star_path(star) class="list-group-item" = star.full_name

@@ -1,0 +1,20 @@
+.p-a-1-sm-up
+  h2= @star.full_name
+  .btn-group
+    - Palace.order(:id).each do |palace|
+      a class='btn btn-secondary' href=url_for([@star, palace]) = palace.name
+  = link_to 'New Comment', new_star_comment_path(@star)
+  .list-group
+    - for comment in @star.comments.where(member_id: [32, 45])
+      .list-group-item
+        = Maruku.new(comment.comments).to_html.html_safe
+        hr
+        .row
+          .col-xs-12
+            span.pull-xs-right= "Added by #{comment.member.full_name}"
+            span.pull-xs-left
+              - if comment.citation?
+                | Citation:&nbsp;
+                = comment.citation
+              - else
+                | *Needs Citation

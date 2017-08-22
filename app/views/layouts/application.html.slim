@@ -1,0 +1,59 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"
+    /! The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+    meta content="Polestar Astrology" name="description"
+    meta content="Tyler Gannon" name="author"
+
+    title= content_for?(:title) ? yield(:title) : "Polestar Astrology"
+
+    = favicon_link_tag 'icons/apple-icon-57x57.png', rel: 'apple-touch-icon57x57'
+    = favicon_link_tag 'icons/apple-icon-60x60.png', rel: 'apple-touch-icon', sizes: '60x60'
+    = favicon_link_tag 'icons/apple-icon-72x72.png', rel: 'apple-touch-icon', sizes: '72x72'
+    = favicon_link_tag 'icons/apple-icon-76x76.png', rel: 'apple-touch-icon', sizes: '76x76'
+    = favicon_link_tag 'icons/apple-icon-114x114.png', rel: 'apple-touch-icon', sizes: '114x114'
+    = favicon_link_tag 'icons/apple-icon-120x120.png', rel: 'apple-touch-icon', sizes: '120x120'
+    = favicon_link_tag 'icons/apple-icon-144x144.png', rel: 'apple-touch-icon', sizes: '144x144'
+    = favicon_link_tag 'icons/apple-icon-152x152.png', rel: 'apple-touch-icon', sizes: '152x152'
+    = favicon_link_tag 'icons/apple-icon-180x180.png', rel: 'apple-touch-icon', sizes: '180x180'
+    = favicon_link_tag 'icons/android-icon-192x192.png', rel: 'icon', sizes: '192x192', type: 'image/png'
+    = favicon_link_tag 'icons/favicon-32x32.png', rel: 'icon', sizes: '32x32', type: 'image/png'
+    = favicon_link_tag 'icons/favicon-96x96.png', rel: 'icon', sizes: '96x96', type: 'image/png'
+    = favicon_link_tag 'icons/favicon-16x16.png', rel: 'icon', sizes: '16x16', type: 'image/png'
+    = favicon_link_tag 'icons/manifest.json', rel: 'manifest'
+
+
+    = csrf_meta_tags
+    = stylesheet_link_tag "application", :media => "all", 'data-turbolinks-track' => true
+
+    = favicon_link_tag 'icons/favicon.ico', :rel => 'shortcut icon'
+
+    = javascript_include_tag "application", 'data-turbolinks-track' => true
+
+  body
+    header
+      nav.navbar.navbar-light.bg-faded
+        a.navbar-brand.text-hide href=root_path Home
+        ul.nav.navbar-nav
+          li.nav-item
+            a.nav-link href=charts_path
+              i.fa.fa-folder-open-o.p-r-1-sm-up
+              span.hidden-xs-down Charts
+          li.nav-item
+            a.nav-link href=new_chart_path
+              i.fa.fa-file-o.p-r-1-sm-up
+              span.hidden-xs-down New Chart
+          li.nav-item
+            a.nav-link href=stars_path
+              | Stars
+          - if member_signed_in?
+            li.nav-item
+              = link_to 'Sign Out', destroy_member_session_path, method: 'delete', class: 'nav-link'
+        /form.form-inline.pull-xs-right
+        /  input.form-control placeholder="Search" type="text" /
+        /  button.btn.btn-outline-success type="submit"  Search
+
+    container-fluid: #main_content.m-t-1-sm-up.m-x-2-sm-up=yield

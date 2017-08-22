@@ -1,0 +1,46 @@
+@mixin card-shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-bottom {
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@mixin card {
+  position: relative;
+  @include card-shadow;
+}
+
+@mixin hover-card {
+  &:hover {
+    position: relative;
+    box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+}
+
+.card-shadow {
+  @include card-shadow;
+}
+
+.card-like {
+  @include card;
+}
+
+.table-list {
+  .row {
+    &:first-child {
+      background-color: gray(100);
+      border-bottom: 1px solid gray(200);
+    }
+    &:nth-child(2n+1) {
+      background-color: gray(100);
+    }
+    &.linkable {
+      transition: box-shadow 0.15s;
+      @include hover-card;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+.row
+  .col-lg-7
+    .chart_display.card-like.border-radius-05
+      - cache "#{@chart.cache_key}/#{params[:year]}" do
+        .chart_title
+          h1.name.text-xs-center.p-t-1= link_to @chart.person_name, @chart
+          .text-xs-center
+            = @chart.local_dob.strftime '%Y  %B %d, %I:%M %p'
+            - if @chart.time_zone?
+              - if @chart.local_dob.dst?
+                sup *
+            - else
+              sup +
+          .text-xs-center
+            =ordinate(@chart.lunar_month)
+            - if @chart.leap
+              | &nbsp;month (leap) /&nbsp;
+            - else
+              | &nbsp;month /&nbsp;
+            = ordinate(@chart.day_of_month) + " day"
+          .text-xs-center= "Inner Element: #{@chart.inner_element.titleize}"
+          .row.pillars.m-x-0.w-100
+            - %w(year month day hour).each do |pillar|
+              .col-xs-3.text-xs-center.p-x-0
+                h5.pillar_name= pillar.titleize
+                .chinese= @chart.send(pillar).chinese
+                .pinyin= @chart.send(pillar).pinyin
+                .english= @chart.send(pillar).name
+
+
+        .palaces
+          - @chart.palaces.each do |chart_palace|
+            .palace class=chart_palace.location.animal data-palace-id=chart_palace.palace.to_param
+              .palace_name.tooltippy class=chart_palace.location.animal data-palace-id=chart_palace.palace.to_param data-title='Click for details'
+                h5.m-b-0.p-a-05.name= "#{chart_palace.ordinal}. #{chart_palace.name}"
+                /h5.name= link_to "#{chart_palace.ordinal}. #{chart_palace.name}", palace_path(chart_palace.palace.friendly_id)
+              .stars.p-x-05
+                .major_stars
+                  - if chart_palace.major_stars.empty?
+                    = render partial: 'stars/star', collection: borrowed_stars(chart_palace), locals: {star_class: 'borrowed_star', chart_palace: chart_palace}
+                  - else
+                    = render partial: 'stars/star', collection: major_stars(chart_palace), locals: {star_class: 'major_star', chart_palace: chart_palace}
+                .minor_stars
+                  = render partial: 'stars/star', collection: minor_stars(chart_palace), locals: {star_class: 'minor_star', chart_palace: chart_palace}
+                /span.palace_location= link_to palace_animal_display(chart_palace), person_path(params[:id], year: chart_palace.location.animal)
+              .palace_location: span.pull-right.p-r-05= link_to chart_palace.location.animal.titleize, chart_path(@chart, year: chart_palace.location.animal)
+
+  .col-lg-5
+    .notes
+      - @chart.palaces.each do |chart_palace|
+        .palace-notes.hidden-xs-up id="notes-#{chart_palace.palace.to_param}"
+          h3= chart_palace.name
+          = render chart_palace.star_relationships

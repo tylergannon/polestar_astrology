@@ -1,0 +1,10 @@
+h2
+  | Editing Comment For&nbsp;
+  - description_method = "#{@comment.commentable.class.name.underscore}_description"
+  - puts description_method
+  - if respond_to?(description_method)
+    = send(description_method, @comment.commentable)
+  - else
+    = @comment.commentable.engligh
+
+= render partial: 'form'

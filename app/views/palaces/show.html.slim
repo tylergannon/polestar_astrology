@@ -1,0 +1,4 @@
+.m-a-1-sm-up
+  = link_to 'New Relationship', [:new, @star, @palace, :relationship]
+  h2 #{@star.full_name} in the #{@palace.name} Palace
+  = render @relationships
