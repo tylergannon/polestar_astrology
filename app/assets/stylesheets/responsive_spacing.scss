@@ -34,23 +34,42 @@
     border-bottom-right-radius: $length !important;
   }
 }
+@each $prop, $abbrev in (margin: m, padding: p) {
+  @each $size, $length in $spacers {
+    .#{$abbrev}a-#{$size} { #{$prop}:        $length $length !important; } // a = All sides
+    .#{$abbrev}t-#{$size} { #{$prop}-top:    $length !important; }
+    .#{$abbrev}r-#{$size} { #{$prop}-right:  $length !important; }
+    .#{$abbrev}b-#{$size} { #{$prop}-bottom: $length !important; }
+    .#{$abbrev}l-#{$size} { #{$prop}-left:   $length !important; }
+
+    // Axes
+    .#{$abbrev}x-#{$size} {
+      #{$prop}-right:  $length !important;
+      #{$prop}-left:   $length !important;
+    }
+    .#{$abbrev}y-#{$size} {
+      #{$prop}-top:    $length !important;
+      #{$prop}-bottom: $length !important;
+    }
+  }
+}
 
 @include media-breakpoint-up(sm) {
   @each $prop, $abbrev in (margin: m, padding: p) {
     @each $size, $length in $spacers {
 
-      .#{$abbrev}-a-#{$size}-sm-up { #{$prop}:        $length $length !important; } // a = All sides
-      .#{$abbrev}-t-#{$size}-sm-up { #{$prop}-top:    $length !important; }
-      .#{$abbrev}-r-#{$size}-sm-up { #{$prop}-right:  $length !important; }
-      .#{$abbrev}-b-#{$size}-sm-up { #{$prop}-bottom: $length !important; }
-      .#{$abbrev}-l-#{$size}-sm-up { #{$prop}-left:   $length !important; }
+      .#{$abbrev}a-#{$size}-sm-up { #{$prop}:        $length $length !important; } // a = All sides
+      .#{$abbrev}t-#{$size}-sm-up { #{$prop}-top:    $length !important; }
+      .#{$abbrev}r-#{$size}-sm-up { #{$prop}-right:  $length !important; }
+      .#{$abbrev}b-#{$size}-sm-up { #{$prop}-bottom: $length !important; }
+      .#{$abbrev}l-#{$size}-sm-up { #{$prop}-left:   $length !important; }
 
       // Axes
-      .#{$abbrev}-x-#{$size}-sm-up {
+      .#{$abbrev}x-#{$size}-sm-up {
         #{$prop}-right:  $length !important;
         #{$prop}-left:   $length !important;
       }
-      .#{$abbrev}-y-#{$size}-sm-up {
+      .#{$abbrev}y-#{$size}-sm-up {
         #{$prop}-top:    $length !important;
         #{$prop}-bottom: $length !important;
       }
@@ -62,18 +81,18 @@
   @each $prop, $abbrev in (margin: m, padding: p) {
     @each $size, $length in $spacers {
 
-      .#{$abbrev}-a-#{$size}-xs { #{$prop}:        $length $length !important; } // a = All sides
-      .#{$abbrev}-t-#{$size}-xs { #{$prop}-top:    $length !important; }
-      .#{$abbrev}-r-#{$size}-xs { #{$prop}-right:  $length !important; }
-      .#{$abbrev}-b-#{$size}-xs { #{$prop}-bottom: $length !important; }
-      .#{$abbrev}-l-#{$size}-xs { #{$prop}-left:   $length !important; }
+      .#{$abbrev}a-#{$size}-xs { #{$prop}:        $length $length !important; } // a = All sides
+      .#{$abbrev}t-#{$size}-xs { #{$prop}-top:    $length !important; }
+      .#{$abbrev}r-#{$size}-xs { #{$prop}-right:  $length !important; }
+      .#{$abbrev}b-#{$size}-xs { #{$prop}-bottom: $length !important; }
+      .#{$abbrev}l-#{$size}-xs { #{$prop}-left:   $length !important; }
 
       // Axes
-      .#{$abbrev}-x-#{$size}-xs {
+      .#{$abbrev}x-#{$size}-xs {
         #{$prop}-right:  $length !important;
         #{$prop}-left:   $length !important;
       }
-      .#{$abbrev}-y-#{$size}-xs {
+      .#{$abbrev}y-#{$size}-xs {
         #{$prop}-top:    $length !important;
         #{$prop}-bottom: $length !important;
       }

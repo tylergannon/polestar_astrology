@@ -34,26 +34,26 @@ html lang="en"
     = javascript_include_tag "application", 'data-turbolinks-track' => true
 
   body
-    header
-      nav.navbar.navbar-light.bg-faded
-        a.navbar-brand.text-hide href=root_path Home
-        ul.nav.navbar-nav
+    div
+    nav.navbar.navbar-expand.navbar-light.bg-light
+      a.navbar-brand.text-hide href=root_path Home
+      ul.mr-auto.navbar-nav
+        li.nav-item
+          a.nav-link href=charts_path
+            i.fa.fa-folder-open-o.pr-1-sm-up
+            span.hidden-xs-down Charts
+        li.nav-item
+          a.nav-link href=new_chart_path
+            i.fa.fa-file-o.pr-1-sm-up
+            span.hidden-xs-down New Chart
+        li.nav-item
+          a.nav-link href=stars_path
+            | Stars
+        - if member_signed_in?
           li.nav-item
-            a.nav-link href=charts_path
-              i.fa.fa-folder-open-o.p-r-1-sm-up
-              span.hidden-xs-down Charts
-          li.nav-item
-            a.nav-link href=new_chart_path
-              i.fa.fa-file-o.p-r-1-sm-up
-              span.hidden-xs-down New Chart
-          li.nav-item
-            a.nav-link href=stars_path
-              | Stars
-          - if member_signed_in?
-            li.nav-item
-              = link_to 'Sign Out', destroy_member_session_path, method: 'delete', class: 'nav-link'
+            = link_to 'Sign Out', destroy_member_session_path, method: 'delete', class: 'nav-link'
         /form.form-inline.pull-xs-right
         /  input.form-control placeholder="Search" type="text" /
         /  button.btn.btn-outline-success type="submit"  Search
 
-    container-fluid: #main_content.m-t-1-sm-up.m-x-2-sm-up=yield
+    container-fluid: #main_content.mt-1-sm-up.mx-2-sm-up=yield

@@ -7,29 +7,18 @@ end
 
 gem 'rails', '~> 5.1.3'
 
-# gem 'bootstrap', '>= 4.0.0.alpha3.1'
 gem 'browser'
 gem 'cancancan'
-# gem 'chosen-rails'
 gem 'coffee-rails', '~> 4.2'
-# gem 'conservative_etags'
 gem 'dalli'
 gem 'devise', '>= 4.2'
 gem 'default_value_for'
-# gem 'font_assets'
-# gem 'font-awesome-rails'
 gem 'friendly_id'
-# gem 'jbuilder', '~> 2.5'
-# gem 'jquery-rails'
-# gem 'kaminari', github: 'amatsuda/kaminari'
-# gem 'kgio'
 gem 'maruku'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-oauth2', '~> 1.3.1'
-# gem 'omniauth-facebook', '>= 4.0.0'
 
 gem 'pg'
-# gem 'prawn-rails'
 gem 'prawn'
 gem 'puma'
 gem 'responders'
@@ -44,7 +33,6 @@ group :production do
 end
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   # gem 'capybara', '~> 2.13'

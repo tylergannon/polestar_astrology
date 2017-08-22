@@ -1,12 +1,9 @@
 $home-icon-x: 225px;
 $home-icon-y: 250px;
 
-header {
-  a.navbar-brand {
-    
-    background-image: image-url('animals/monkey.png');
-    background-size: cover;
-    width: $home-icon-x / 8;
-    height: $home-icon-y / 8;
-  }
+a.navbar-brand {
+  background-image: image-url('animals/monkey.png');
+  background-size: cover;
+  width: $home-icon-x / 8;
+  height: $home-icon-y / 8;
 }

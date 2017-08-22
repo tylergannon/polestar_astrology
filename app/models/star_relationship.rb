@@ -76,7 +76,6 @@ class StarRelationship < ActiveRecord::Base
 
   def self.find_by_chart_palace(chart_palace)
     possible = possible_matches(chart_palace.palace_id, chart_palace.stars.map(&:id))
-    byebug
     possible.select do |star_relationship|
       star_relationship.matches_chart_palace?(chart_palace)
     end

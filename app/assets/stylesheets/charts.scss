@@ -1,11 +1,14 @@
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins";
+@import "spacers";
 
 $border-width: 0.5px;
 $cell-padding-left: 0px;
 $border: $border-width solid black;
 $border-radius-size: '05';
+
+/* #{inspect($spacers)} */
 
 @mixin one-corner($y-name, $x-name, $space) {
   $radius: map-get($spacers, $space);

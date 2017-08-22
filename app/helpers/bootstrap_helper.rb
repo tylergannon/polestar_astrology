@@ -2,11 +2,19 @@ module BootstrapHelper
   def col_sizes(params={})
     offsets = params.delete(:offset) || {}
     cols = params.to_a.map do |pair|
-      "col-#{pair[0]}-#{pair[1]}"
+      if pair[0] == :xs
+        "col-#{pair[1]}"
+      else
+        "col-#{pair[0]}-#{pair[1]}"
+      end
     end.join(' ')
 
     offsets = offsets.to_a.map do |pair|
-      "offset-#{pair[0]}-#{pair[1]}"
+      if pair[0] == :xs
+        "offset-#{pair[1]}"
+      else
+        "offset-#{pair[0]}-#{pair[1]}"
+      end
     end.join(' ')
 
     {tag: 'div', class: "#{cols} #{offsets}"}

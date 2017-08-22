@@ -15,7 +15,7 @@ class RelationshipsController < ApplicationController
                                       *get_star_relationship_stars_from_params
 
     if star_relationship_params.key? :comments
-      unless star_relationship_params[:comments][:comments].blank?
+      unless star_relationship_params[:comments][:comment_text].blank?
         Comment.create({
           member_id: current_member.id,
           commentable: @star_relationship,
@@ -40,6 +40,6 @@ class RelationshipsController < ApplicationController
   def star_relationship_params
     params.require(:star_relationship).permit(
       star_relationship_stars: [:star_id, :required],
-      comments: [:comments, :citation])
+      comments: [:comment_text, :citation])
   end
 end

@@ -10,7 +10,7 @@
         = Maruku.new(comment.comments).to_html.html_safe
         hr
         .row
-          .col-xs-12
+          .col-12
             span.pull-xs-right= "Added by #{comment.member.full_name}"
             span.pull-xs-left
               - if comment.citation?

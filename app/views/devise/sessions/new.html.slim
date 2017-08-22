@@ -1,4 +1,4 @@
-h2.text-xs-center Sign In
+h2.text-center Sign In
 
 .row: *col_sizes(lg: 4, md: 6, sm: 8, xs: 10, offset: {lg: 4, md: 3, sm: 2, xs: 1})
   = vertical_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
@@ -6,16 +6,16 @@ h2.text-xs-center Sign In
     = f.password_input :password, class: 'border-radius-2', label: false
     button type="submit" class='w-100 btn border-radius-2 btn-social btn-primary'
       i class="fa fa-sign-in"
-      .w-100.text-xs-center Sign In
+      .w-100.text-center Sign In
 
 
   a.btn.btn-social.btn-google.w-100.border-radius-2.m-t-025[
     href=member_google_oauth2_omniauth_authorize_path]
     i class="fa fa-google"
-    .w-100.text-xs-center Sign in with Google
+    .w-100.text-center Sign in with Google
 
   - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
     = link_to new_password_path(resource_name),
       class: 'btn btn-social btn-vimeo w-100 border-radius-2 m-t-025' do
       i class="fa fa-question"
-      .w-100.text-xs-center Forgot Password?
+      .w-100.text-center Forgot Password?

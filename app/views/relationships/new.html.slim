@@ -6,7 +6,7 @@
         option value=star.id selected=(star==star_relationship_star.star) =star.english
     input type="checkbox" name='star_relationship[star_relationship_stars][][required]' checked=(star_relationship_star.required)
   = f.fields_for :comments, Comment.new do |ff|
-    = ff.text_area_input :comments
+    = ff.text_area_input :comment_text
     = ff.text_input :citation
 
   = f.submit 'Save'

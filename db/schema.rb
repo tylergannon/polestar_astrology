@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905173643) do
+ActiveRecord::Schema.define(version: 20170822092336) do
 
   create_table "alternate_emails", id: :serial, force: :cascade do |t|
     t.string "email"
@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 20160905173643) do
     t.integer "member_id"
     t.integer "commentable_id"
     t.string "commentable_type"
-    t.text "comments"
+    t.text "comment_text"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "citation"
