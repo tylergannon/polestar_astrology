@@ -54,6 +54,6 @@
   .col-lg-5
     .notes
       - @chart.palaces.each do |chart_palace|
-        .palace-notes.hidden-xs-up id="notes-#{chart_palace.palace.to_param}"
+        .palace-notes.d-none id="notes-#{chart_palace.palace.to_param}"
           h3= chart_palace.name
           = render chart_palace.star_relationships
