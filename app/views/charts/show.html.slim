@@ -19,13 +19,19 @@
               | &nbsp;month /&nbsp;
             = ordinate(@chart.day_of_month) + " day"
           .text-center= "Inner Element: #{@chart.inner_element.titleize}"
-          .row.pillars.mx-0.w-100
+          - if hella_old?
+            br
             - %w(year month day hour).each do |pillar|
-              .col-3.text-center.px-0
-                h5.pillar_name= pillar.titleize
-                .chinese= @chart.send(pillar).chinese
-                .pinyin= @chart.send(pillar).pinyin
-                .english= @chart.send(pillar).name
+
+              .row: .col-12.text-center.font-weight-bold= pillar.titleize + ": " + @chart.send(pillar).name
+          - else
+            .row.pillars.mx-0.w-100
+              - %w(year month day hour).each do |pillar|
+                .col-3.text-center.px-0
+                  h5.pillar_name= pillar.titleize
+                  .chinese= @chart.send(pillar).chinese
+                  .pinyin= @chart.send(pillar).pinyin
+                  .english= @chart.send(pillar).name
 
 
         .palaces

@@ -76,6 +76,12 @@ $palaces: (
   pig: (3, 3)
 );
 
+@include media-breakpoint-down('sm') {
+  .hidden-sm-down {
+    display: none;
+  }
+}
+
 .chart_display {
   position: relative;
   .chart_title {
