@@ -14,16 +14,12 @@ development:
   encoding: unicode
   database: polestar_development
   pool: 5
-  username: dbuser
-  password:
 
 test:
   adapter: postgresql
   encoding: unicode
   database: polestar_test
   pool: 5
-  username: dbuser
-  password:
 
 production:
   <<: *default

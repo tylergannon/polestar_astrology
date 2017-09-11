@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170822092336) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "alternate_emails", id: :serial, force: :cascade do |t|
     t.string "email"
     t.integer "member_id"

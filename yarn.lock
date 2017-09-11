@@ -7,16 +7,16 @@ bootstrap@beta:
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-beta.tgz#dc5928175d2e71310bc668cf9e05a907211b72a6"
 
 chosen-js@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/chosen-js/-/chosen-js-1.7.0.tgz#8ceb2e929e2a072886edd384d78989dfbffa58c3"
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/chosen-js/-/chosen-js-1.8.2.tgz#bfd8ed1266ef667fbbc453c7e5b88d4c470e897e"
 
 jquery@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
 
 popper.js@^1.12.3:
-  version "1.12.3"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.12.3.tgz#e46a99c52e74e310411df505d820b61bdbe7eaee"
+  version "1.12.5"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.12.5.tgz#229e4dea01629e1f1a1e26991ffade5024220fa6"
 
 tether@^1.4.0:
   version "1.4.0"

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+heroku pg:backups:capture --app polestar-astrology
+heroku pg:backups:download --app polestar-astrology
+
+pg_restore --verbose --clean --no-acl --no-owner -d polestar_development latest.dump
