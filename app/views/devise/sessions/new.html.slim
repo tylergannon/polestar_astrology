@@ -1,9 +1,14 @@
 h2.text-center Sign In
+- if flash[:notice]
+  .row: *col_sizes(lg: 4, md: 6, sm: 8, xs: 10, offset: {lg: 4, md: 3, sm: 2, xs: 1})
+    strong= flash[:notice]
 
-.row: *col_sizes(lg: 4, md: 6, sm: 8, xs: 10, offset: {lg: 4, md: 3, sm: 2, xs: 1})
+.row.justify-content-center: *col_sizes(lg: 4, md: 6, sm: 8, xs: 10, offset: {lg: 4, md: 3, sm: 2, xs: 1})
+  p.text-center Welcome back.  Please enter your email and password and click "sign in." You can also sign in with Google, or click below if you don't know your password.
+
   = vertical_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    = f.text_input :email, class: 'border-radius-2', label: false
-    = f.password_input :password, class: 'border-radius-2', label: false
+    = f.text_input :email, class: 'border-radius-2', label: false, placeholder: 'email address'
+    = f.password_input :password, class: 'border-radius-2', label: false, placeholder: 'password'
     button type="submit" class='w-100 btn border-radius-2 btn-social btn-primary'
       i class="fa fa-sign-in"
       .w-100.text-center Sign In

@@ -1,6 +1,7 @@
 h2.text-center Forgot Your Password?
 
-.row: *col_sizes(lg: 4, md: 6, sm: 8, xs: 10, offset: {lg: 4, md: 3, sm: 2, xs: 1})
+.row.justify-content-center:  *col_sizes(lg: 4, md: 6, sm: 8, xs: 10, offset: {lg: 4, md: 3, sm: 2, xs: 1})
+  p.text-center Enter your email and click the button. It may take a few minutes for the email to arrive.
   = vertical_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
     = f.text_input :email, class: 'border-radius-2', label: false
 
