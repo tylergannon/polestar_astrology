@@ -13,17 +13,38 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   # Enable/disable caching. By default caching is disabled.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
+  if ENV['CACHE']
+    puts "CACHING IS TURNED ON"
     config.action_controller.perform_caching = true
 
-    config.cache_store = :memory_store
+    config.action_mailer.perform_caching = false
+
+    config.cache_store = :dalli_store, nil
+
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
+      'Cache-Control' => 'public, max-age=172800'
     }
   else
     config.action_controller.perform_caching = false
 
+    config.action_mailer.perform_caching = false
+
     config.cache_store = :null_store
+  end
+
+  unless ENV['MAIL']
+    config.action_mailer.delivery_method = :test
+  else
+    puts "MAILER IS ON."
+    ActionMailer::Base.smtp_settings = {
+      :user_name => ENV['SENDGRID_USERNAME'],
+      :password => ENV['SENDGRID_PASSWORD'],
+      :domain => 'polestar-astrology.herokuapp.com',
+      :address => 'smtp.sendgrid.net',
+      :port => 587,
+      :authentication => :plain,
+      :enable_starttls_auto => true
+    }
   end
 
   # Don't care if the mailer can't send.
