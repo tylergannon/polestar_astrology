@@ -4,7 +4,6 @@ h2.text-center Forgot Your Password?
   = vertical_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
     = f.text_input :email, class: 'border-radius-2', label: false
 
-  a.btn.btn-social.btn-google.w-100.border-radius-2.m-t-025[
-    href=member_google_oauth2_omniauth_authorize_path]
-    i class="fa fa-envelope-o"
-    .w-100.text-center Send Password Reset Instructions
+    button type="submit" class='w-100 btn border-radius-2 btn-social btn-primary'
+      i class="fa fa-envelope-o"
+      .w-100.text-center Send Password Reset Instructions
